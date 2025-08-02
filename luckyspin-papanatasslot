@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>🎯 Lucky Spin Kupon</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    #pointer {
+      width: 0;
+      height: 0;
+      margin: auto;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 30px solid black; /* arah ke bawah */
+    }
+
+    #wheel-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+    }
+
+    #wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 10px solid #333;
+  transition: transform 5s ease-out;
+  background: conic-gradient(
+    red 0deg 36deg,
+    green 36deg 72deg,
+    blue 72deg 108deg,
+    cyan 108deg 144deg,
+    lime 144deg 180deg,
+    yellow 180deg 216deg,
+    orange 216deg 252deg,
+    magenta 252deg 288deg,
+    pink 288deg 324deg,
+    gold 324deg 360deg
+  );
+  z-index: 1;
+}
+
+    .wheel-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+  .segment {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  transform: rotate(var(--angle)) translate(95px, 0);
+  width: 80px;
+  margin-left: -40px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  line-height: 1.2;
+}
+
+.logo-tengah {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 105%px; /* ubah sesuai ukuran yang kamu mau */
+  height: 105px;
+  transform: translate(-40%, -40%);
+  border-radius: 50%;
+  z-index: 10; /* pastikan di atas roda */
+  pointer-events: none; /* agar tidak mengganggu klik */
+}
+
+
+    /* LED Ring */
+    .led-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 6;
+      transform: translate(6px, 6px); /* ✅ digeser sedikit ke kiri atas */
+    }
+
+    .led {
+      --total: 30;
+      --angle: calc(360deg / var(--total));
+      --i: 0;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: gold;
+      box-shadow: 0 0 6px white;
+      transform-origin: center;
+      transform: rotate(calc(var(--i) * var(--angle))) translateY(-155px);
+      animation: blink 1s infinite alternate;
+      animation-delay: calc(var(--i) * 0.05s);
+    }
+
+    @keyframes blink {
+      0% { background: white; box-shadow: 0 0 6px white; }
+      100% { background: gold; box-shadow: 0 0 8px gold; }
+    }
+
+     #form-area {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.divider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 150px;
+  background-color: black;
+  transform-origin: top center;
+  z-index: 3;
+}
+
+/* Untuk 10 slice, tiap slice 36 derajat */
+.label-1  { transform: rotate(-6deg)   translate(55px); }
+.label-2  { transform: rotate(30deg)   translate(55px); }
+.label-3  { transform: rotate(66deg)   translate(55px); }
+.label-4  { transform: rotate(102deg)  translate(55px); }
+.label-5  { transform: rotate(138deg)  translate(55px); }
+.label-6  { transform: rotate(174deg)  translate(55px); }
+.label-7  { transform: rotate(210deg)  translate(55px); }
+.label-8  { transform: rotate(246deg)  translate(55px); }
+.label-9  { transform: rotate(282deg)  translate(55px); }
+.label-10 { transform: rotate(318deg)  translate(55px); }
+
+    input {
+      padding: 10px;
+      width: 200px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      background: orange;
+      border: none;
+      color: white;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: darkorange;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎯 Luckyspin Keberuntungan PapanAtasSlot 🎯</h2>
+
+  <div id="pointer"></div>
+
+  <div id="wheel-container">
+    <!-- Lampu LED -->
+      <div class="led-ring">
+        <!-- Generate 30 titik LED secara manual -->
+        <div class="led" style="--i:0;"></div>
+        <div class="led" style="--i:1;"></div>
+        <div class="led" style="--i:2;"></div>
+        <div class="led" style="--i:3;"></div>
+        <div class="led" style="--i:4;"></div>
+        <div class="led" style="--i:5;"></div>
+        <div class="led" style="--i:6;"></div>
+        <div class="led" style="--i:7;"></div>
+        <div class="led" style="--i:8;"></div>
+        <div class="led" style="--i:9;"></div>
+        <div class="led" style="--i:10;"></div>
+        <div class="led" style="--i:11;"></div>
+        <div class="led" style="--i:12;"></div>
+        <div class="led" style="--i:13;"></div>
+        <div class="led" style="--i:14;"></div>
+        <div class="led" style="--i:15;"></div>
+        <div class="led" style="--i:16;"></div>
+        <div class="led" style="--i:17;"></div>
+        <div class="led" style="--i:18;"></div>
+        <div class="led" style="--i:19;"></div>
+        <div class="led" style="--i:20;"></div>
+        <div class="led" style="--i:21;"></div>
+        <div class="led" style="--i:22;"></div>
+        <div class="led" style="--i:23;"></div>
+        <div class="led" style="--i:24;"></div>
+        <div class="led" style="--i:25;"></div>
+        <div class="led" style="--i:26;"></div>
+        <div class="led" style="--i:27;"></div>
+        <div class="led" style="--i:28;"></div>
+        <div class="led" style="--i:29;"></div>
+      </div>
+
+      <img src="https://i.ibb.co/pB63gspd/049b1ca3-db9f-42b9-980d-7363faac5600.png" 
+       alt="Logo Tengah"
+       class="logo-tengah">
+
+       <div class="wheel-text">
+        </div>
+
+    <div id="wheel">
+      
+  <div class="label label-1">IDR 2,500</div>
+  <div class="label label-2">IDR 5,000</div>
+  <div class="label label-3">IDR 7,500</div>
+  <div class="label label-4">IDR 10,000</div>
+  <div class="label label-5">IDR 15,000</div>
+  <div class="label label-6">IDR 20,000</div>
+  <div class="label label-7">IDR 50,000</div>
+  <div class="label label-8">IDR 100,000</div>
+  <div class="label label-9">IDR 150,000</div>
+  <div class="label label-10">IDR 1,000,000</div>
+
+<div class="divider" style="transform: rotate(0deg);"></div>
+<div class="divider" style="transform: rotate(36deg);"></div>
+<div class="divider" style="transform: rotate(72deg);"></div>
+<div class="divider" style="transform: rotate(108deg);"></div>
+<div class="divider" style="transform: rotate(144deg);"></div>
+<div class="divider" style="transform: rotate(180deg);"></div>
+<div class="divider" style="transform: rotate(216deg);"></div>
+<div class="divider" style="transform: rotate(252deg);"></div>
+<div class="divider" style="transform: rotate(288deg);"></div>
+<div class="divider" style="transform: rotate(324deg);"></div>
+
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div id="form-area">
+    <input type="text" id="kodeInput" placeholder="Masukkan Kode Kupon" />
+    <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
+  </div>
+
+     <script>
+  const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
+
+  const hadiahKeSudut = {
+  "IDR 2500": -6,
+  "IDR 5000": 30,
+  "IDR 7500": 66,
+  "IDR 10000": 102,
+  "IDR 15000": 138,
+  "IDR 20000": 174,
+  "IDR 50000": 210,
+  "IDR 100000": 246,
+  "IDR 150000": 282,
+  "IDR 1000000": 318
+};
+
+  let totalPutaran = 0;
+
+  async function putarRoda() {
+  const input = document.getElementById("kodeInput").value.trim();
+  if (!input) return alert("Masukkan kode kupon!");
+
+  const res = await fetch(urlScript, {
+    method: 'POST',
+    body: new URLSearchParams({ kupon: input })
+  });
+
+  const data = await res.json();
+
+  if (data.status === "invalid") {
+    alert("❌ Kode tidak valid!");
+    return;
+  }
+
+  if (data.status === "used") {
+    alert("⚠️ Kupon sudah digunakan!");
+    return;
+  }
+
+const hadiah = "IDR " + data.hadiah;
+const angle = hadiahKeSudut[hadiah];
+
+if (angle === undefined) {
+  alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+  return;
+}
+
+const segmentOffset = 18; // tengah segmen
+const pointerInitialAngle = 282; // posisi default saat buka halaman
+const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+
+totalPutaran += 360 * 5 + correctedAngle;
+
+const wheel = document.getElementById("wheel");
+wheel.style.transition = "transform 5s ease-out";
+wheel.style.transform = `rotate(${totalPutaran}deg)`;
+
+setTimeout(() => {
+  alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+}, 5200);
+
+}
+</script>
+</body>
+</html>
