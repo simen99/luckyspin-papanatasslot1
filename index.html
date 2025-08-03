@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>🎯 Lucky Spin Kupon</title>
+  <title>PapanAtasSlot - Lucky Wheel</title>
   
   <style>
 
@@ -186,6 +186,16 @@ button:hover {
   z-index: 3;
 }
 
+.form-wrapper {
+  border: 2px solid #FFD700;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  box-shadow: 0 0 10px #FFD700;
+  background-color: #000000;
+}
+
 /* Untuk 10 slice, tiap slice 36 derajat */
 .label-1  { transform: rotate(-6deg)   translate(55px); }
 .label-2  { transform: rotate(30deg)   translate(55px); }
@@ -297,10 +307,12 @@ button:hover {
   </div>
 
   <!-- Form -->
+  <div class="form-wrapper">
   <div id="form-area">
     <input type="text" id="kodeInput" placeholder="Masukkan Kode Kupon" />
     <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
   </div>
+</div>
 
      <script>
   const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
