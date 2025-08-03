@@ -52,13 +52,25 @@ button:hover {
     }
 
     #pointer {
-      width: 0;
-      height: 0;
-      margin: auto;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 30px solid gold; /* atau pakai #FFD700 untuk warna emas */
+  width: 0;
+  height: 0;
+  margin: 20px auto;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 35px solid gold; /* segitiga mengarah ke bawah */
+  filter: drop-shadow(0 4px 6px rgba(255, 215, 0, 0.5));
+  animation: pulse 1.2s infinite alternate;
+  transform: translateY(5px);
+}
+
+    @keyframes pulse {
+    0% {
+      transform: translateY(5px) scale(1);
     }
+    100% {
+      transform: translateY(2px) scale(1.05);
+    }
+  }
 
     #wheel-container {
       position: relative;
