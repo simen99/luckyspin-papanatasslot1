@@ -256,19 +256,18 @@ button:hover {
 
 .form-wrapper {
   border: 2px solid #FFD700;
-  padding: 12px 20px;
+  padding: 16px 20px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 12px auto 0; /* dekat ke roda */
+  margin: 15px auto 0;
   box-shadow: 0 0 10px #FFD700;
   background-color: #000000;
-  width: fit-content;         /* ⬅️ Ukuran mengikuti isi */
-  max-width: 300px;           /* ⬅️ Batasi agar tidak melar */
+  width: fit-content;
   gap: 10px;
 }
-
+    
 #form-area {
   display: flex;
   flex-direction: column;
@@ -276,33 +275,33 @@ button:hover {
   gap: 12px;
 }
 
-#form-area input[type="text"] {
-  width: 220px;
-  height: 34px;
-  padding: 6px;
-  font-size: 13px;
+#form-area input[type="text"],
+#form-area button {
+  width: 240px;               /* Panjang */
+  height: 42px;               /* Tinggi */
+  padding: 0 10px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+#form-area input[type="text"] {
   background-color: #1a1a1a;
   border: 2px solid #FFD700;
   color: #FFD700;
-  border-radius: 5px;
 }
 
 #form-area button {
-  width: 220px;
-  height: 36px;
-  padding: 6px;
-  font-size: 13px;
   background: #FFA500;
   color: white;
-  font-weight: bold;
   border: none;
-  border-radius: 5px;
   box-shadow: 0 0 8px #FFD700;
   cursor: pointer;
+  margin-top: 8px;
 }
-    
+
 #form-area button:hover {
   background-color: #e6a400;
 }
