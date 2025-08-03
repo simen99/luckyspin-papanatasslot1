@@ -163,25 +163,18 @@ button:hover {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #ffd700; /* emas terang */
-  box-shadow: 0 0 8px #fff, 0 0 15px #ffd700;
+  background: gold;
   transform-origin: center;
   transform: rotate(calc(var(--i) * var(--angle))) translateY(-155px);
-  animation: blink 1.5s ease-in-out infinite;
-  animation-delay: calc(var(--i) * 0.07s);
+  animation: blink 1.2s linear infinite;
+  animation-delay: calc(var(--i) * 0.04s);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
 }
 
 @keyframes blink {
-  0%, 100% {
-    opacity: 0.4;
-    box-shadow: 0 0 3px #fff, 0 0 6px #ffd700;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 8px #fff, 0 0 20px #ffd700;
-    transform: scale(1.2);
-  }
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.4; }
 }
 
      #form-area {
