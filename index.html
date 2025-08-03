@@ -54,13 +54,13 @@ button:hover {
     #pointer {
   width: 0;
   height: 0;
-  margin: 20px auto;
+  margin: 0 auto 10px auto;
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
-  border-bottom: 35px solid gold; /* segitiga mengarah ke bawah */
-  filter: drop-shadow(0 4px 6px rgba(255, 215, 0, 0.5));
+  border-top: 35px solid gold; /* ⬅️ Hadap bawah (ubah jadi border-top) */
+  filter: drop-shadow(0 4px 6px rgba(255, 215, 0, 0.6));
   animation: pulse 1.2s infinite alternate;
-  transform: translateY(5px);
+  transform: translateY(2px);
 }
 
     @keyframes pulse {
