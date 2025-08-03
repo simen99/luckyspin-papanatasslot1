@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>PapanAtasSlot - Lucky Wheel</title>
+  <title>🎯 Lucky Spin Kupon</title>
   
   <style>
 
@@ -24,20 +24,12 @@ button {
   border-radius: 8px;
   box-shadow: 0 0 10px #FFD700;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 button:hover {
   background-color: #e6c200;
 }
-    
-@media (max-width: 480px) {
-  #form-area {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-    
     body {
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -52,25 +44,13 @@ button:hover {
     }
 
     #pointer {
-  width: 0;
-  height: 0;
-  margin: 0 auto 10px auto;
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  border-top: 35px solid gold; /* ⬅️ Hadap bawah (ubah jadi border-top) */
-  filter: drop-shadow(0 4px 6px rgba(255, 215, 0, 0.6));
-  animation: pulse 1.2s infinite alternate;
-  transform: translateY(2px);
-}
-
-    @keyframes pulse {
-    0% {
-      transform: translateY(5px) scale(1);
+      width: 0;
+      height: 0;
+      margin: auto;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 30px solid black; /* arah ke bawah */
     }
-    100% {
-      transform: translateY(2px) scale(1.05);
-    }
-  }
 
     #wheel-container {
       position: relative;
@@ -84,7 +64,7 @@ button:hover {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 10px solid #666; /* abu gelap netral */
+  border: 10px solid #333;
   transition: transform 5s ease-out;
   background: conic-gradient(
     red 0deg 36deg,
@@ -101,22 +81,6 @@ button:hover {
   z-index: 1;
 }
 
-#form-area {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  padding: 20px;
-  border: 2px solid gold; /* Garis emas */
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); /* Glow ringan */
-  background-color: rgba(0, 0, 0, 0.6); /* Sedikit transparan hitam */
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-}
-
     .wheel-text {
   position: absolute;
   top: 0;
@@ -124,16 +88,6 @@ button:hover {
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-    .floating-icon {
-  animation: floaty 2.5s ease-in-out infinite;
-}
-
-@keyframes floaty {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0px); }
 }
 
   .segment {
@@ -163,6 +117,7 @@ button:hover {
   z-index: 10; /* pastikan di atas roda */
   pointer-events: none; /* agar tidak mengganggu klik */
 }
+
 
     /* LED Ring */
     .led-ring {
@@ -200,14 +155,13 @@ button:hover {
       0% { background: white; box-shadow: 0 0 6px white; }
       100% { background: gold; box-shadow: 0 0 8px gold; }
     }
-    
+
      #form-area {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px; /* ✅ tambahkan ini agar ada jarak antar elemen */
-}
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     .label {
   position: absolute;
@@ -244,70 +198,30 @@ button:hover {
 .label-10 { transform: rotate(318deg)  translate(55px); }
 
     input {
-  padding: 10px;
-  width: 250px;
-  font-size: 14px;
-  border: 2px solid gold;
-  border-radius: 5px;
-  background-color: #1a1a1a;
-  color: white;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-  transition: all 0.3s ease;
-}
-    input {
-  padding: 10px;
-  width: 240px;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #222;
-  color: white;
-  box-shadow: 0 0 5px gold;
-  margin-bottom: 10px;
-}
-
-input:focus {
-  outline: none;
-  box-shadow: 0 0 12px rgba(255, 255, 0, 0.9);
-  transform: scale(1.03);
-}
+      padding: 10px;
+      width: 200px;
+      font-size: 14px;
+    }
 
     button {
-  padding: 10px 20px;
-  font-size: 14px;
-  background: linear-gradient(90deg, #ffcc00, #ff9900);
-  border: 2px solid gold;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 8px;
-  box-shadow: 0 0 10px gold;
-  transition: all 0.3s ease-in-out;
-  animation: pulse-shadow 1.5s infinite alternate;
-}
+      padding: 10px 20px;
+      font-size: 14px;
+      background: orange;
+      border: none;
+      color: white;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-button:hover {
-  transform: scale(1.06);
-  background: linear-gradient(90deg, #fff200, #ffaa00);
-  box-shadow: 0 0 15px yellow;
-}
-
-@keyframes pulse-shadow {
-  0% {
-    box-shadow: 0 0 8px gold;
-  }
-  100% {
-    box-shadow: 0 0 16px yellow;
-  }
-}
+    button:hover {
+      background: darkorange;
+    }
   </style>
 </head>
 <body>
 
-  <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
+  <h2>🎯 Luckyspin Keberuntungan PapanAtasSlot 🎯</h2>
 
   <div id="pointer"></div>
 
@@ -383,19 +297,12 @@ button:hover {
 
   <!-- Form -->
   <div id="form-area">
-  <input type="text" id="kodeInput" placeholder="Masukkan Kode Kupon" />
-  <input type="text" id="userIdInput" placeholder="Masukkan User ID" />
-  <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
-</div>
-
-     <!-- Form -->
-  <div id="form-area">
     <input type="text" id="kodeInput" placeholder="Masukkan Kode Kupon" />
     <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
   </div>
 
      <script>
-  const urlScript = "https://script.google.com/macros/s/AKfycbwWV25bZMAT1kxwNgtb_gZeyVzpyk0f9NhMrGaGPSYXYvXZUFum4SiC9bVVbY0zSy2R/exec";
+  const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
 
   const hadiahKeSudut = {
   "IDR 2500": -6,
@@ -454,37 +361,8 @@ wheel.style.transform = `rotate(${totalPutaran}deg)`;
 setTimeout(() => {
   alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
 }, 5200);
+
 }
-       
 </script>
-  
-<script type="text/javascript">
-  var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-  (function () {
-    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/680c7b424b378d190bfa1983/1ipoc2vkj';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    s0.parentNode.insertBefore(s1, s0);
-  })();
-</script>
-
-<!-- ✅ Tambahkan tombol SETELAH script, SEBELUM </body> -->
-
-<a href="https://klikblg.com/tele-pas" target="_blank" style="position: fixed; bottom: 180px; left: 20px; z-index: 100000;">
-  <img src="https://i.ibb.co/tMf82kDb/telegram-gif.gif"
-       alt="Telegram GIF"
-       class="floating-icon"
-       style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
-</a>
-
-<a href="https://klikblg.com/wa-pas" target="_blank" style="position: fixed; bottom: 110px; left: 20px; z-index: 100000;">
-  <img src="https://i.ibb.co/LXp1Yy3S/whats-app.gif"
-       alt="WhatsApp GIF"
-       class="floating-icon"
-       style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
-</a>
-
 </body>
 </html>
