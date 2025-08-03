@@ -397,12 +397,22 @@ button:hover {
   let totalPutaran = 0;
 
   async function putarRoda() {
-  const input = document.getElementById("kodeInput").value.trim();
-  if (!input) return alert("Masukkan kode kupon!");
+  const kodeInput = document.getElementById("kodeInput").value.trim();
+  const userIdInput = document.getElementById("userIdInput").value.trim();
+
+  if (!userIdInput) {
+    alert("⚠️ User ID wajib diisi!");
+    return;
+  }
+
+  if (kodeInput.length < 10) {
+    alert("⚠️ Kode kupon minimal 10 karakter!");
+    return;
+  }
 
   const res = await fetch(urlScript, {
     method: 'POST',
-    body: new URLSearchParams({ kupon: input })
+    body: new URLSearchParams({ kupon: kodeInput })
   });
 
   const data = await res.json();
@@ -417,29 +427,29 @@ button:hover {
     return;
   }
 
-const hadiah = "IDR " + data.hadiah;
-const angle = hadiahKeSudut[hadiah];
+  const hadiah = "IDR " + data.hadiah;
+  const angle = hadiahKeSudut[hadiah];
 
-if (angle === undefined) {
-  alert("⚠️ Hadiah tidak dikenali: " + hadiah);
-  return;
+  if (angle === undefined) {
+    alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+    return;
+  }
+
+  const segmentOffset = 18;
+  const pointerInitialAngle = 282;
+  const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+
+  totalPutaran += 360 * 5 + correctedAngle;
+
+  const wheel = document.getElementById("wheel");
+  wheel.style.transition = "transform 5s ease-out";
+  wheel.style.transform = `rotate(${totalPutaran}deg)`;
+
+  setTimeout(() => {
+    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+  }, 5200);
 }
-
-const segmentOffset = 18; // tengah segmen
-const pointerInitialAngle = 282; // posisi default saat buka halaman
-const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
-
-totalPutaran += 360 * 5 + correctedAngle;
-
-const wheel = document.getElementById("wheel");
-wheel.style.transition = "transform 5s ease-out";
-wheel.style.transform = `rotate(${totalPutaran}deg)`;
-
-setTimeout(() => {
-  alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-}, 5200);
-
-}
+       
 </script>
 </body>
 </html>
