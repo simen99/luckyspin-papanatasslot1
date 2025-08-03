@@ -323,6 +323,10 @@ button:hover {
   const input = document.getElementById("kodeInput").value.trim();
   if (!input) return alert("Masukkan kode kupon!");
 
+  const button = document.querySelector("button");
+  button.disabled = true;
+  button.innerText = "⏳ Memutar...";
+
   const res = await fetch(urlScript, {
     method: 'POST',
     body: new URLSearchParams({ kupon: input })
@@ -332,37 +336,57 @@ button:hover {
 
   if (data.status === "invalid") {
     alert("❌ Kode tidak valid!");
+    button.disabled = false;
+    button.innerText = "🎁 SPIN SEKARANG";
     return;
   }
 
   if (data.status === "used") {
     alert("⚠️ Kupon sudah digunakan!");
+    button.disabled = false;
+    button.innerText = "🎁 SPIN SEKARANG";
     return;
   }
 
-const hadiah = "IDR " + data.hadiah;
-const angle = hadiahKeSudut[hadiah];
+  const hadiah = "IDR " + data.hadiah;
+  const angle = hadiahKeSudut[hadiah];
 
-if (angle === undefined) {
-  alert("⚠️ Hadiah tidak dikenali: " + hadiah);
-  return;
+  if (angle === undefined) {
+    alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+    button.disabled = false;
+    button.innerText = "🎁 SPIN SEKARANG";
+    return;
+  }
+
+  const segmentOffset = 18; // tengah segmen
+  const pointerInitialAngle = 282; // posisi default
+  const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+
+  totalPutaran += 360 * 5 + correctedAngle;
+
+  const wheel = document.getElementById("wheel");
+  wheel.style.transition = "transform 5s ease-out";
+  wheel.style.transform = `rotate(${totalPutaran}deg)`;
+
+  setTimeout(() => {
+    confettiEffect(); // efek confetti 🎉
+    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+    button.disabled = false;
+    button.innerText = "🎁 SPIN SEKARANG";
+  }, 5200);
 }
-
-const segmentOffset = 18; // tengah segmen
-const pointerInitialAngle = 282; // posisi default saat buka halaman
-const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
-
-totalPutaran += 360 * 5 + correctedAngle;
-
-const wheel = document.getElementById("wheel");
-wheel.style.transition = "transform 5s ease-out";
-wheel.style.transform = `rotate(${totalPutaran}deg)`;
-
-setTimeout(() => {
-  alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-}, 5200);
-
+       
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+function confettiEffect() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
 }
+  
 </script>
 </body>
 </html>
