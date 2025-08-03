@@ -233,6 +233,26 @@ button:hover {
   box-shadow: 0 0 15px 4px #FFD700;
   transition: box-shadow 0.3s ease;
 }
+
+    .floating-btn {
+  position: fixed;
+  left: 20px;
+  z-index: 100000;
+}
+
+.floating-btn img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.floating-btn img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.6);
+}
   </style>
 </head>
 <body>
@@ -420,6 +440,14 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+
+  <a href="https://klikblg.com/tele-pas" target="_blank" class="floating-btn" style="bottom: 180px;">
+  <img src="https://i.ibb.co/tMf82kDb/telegram-gif.gif" alt="Telegram" />
+</a>
+
+<a href="https://klikblg.com/wa-pas" target="_blank" class="floating-btn" style="bottom: 110px;">
+  <img src="https://i.ibb.co/LXp1Yy3S/whats-app.gif" alt="WhatsApp" />
+</a>
   
 </body>
 </html>
