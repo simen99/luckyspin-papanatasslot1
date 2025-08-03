@@ -24,11 +24,18 @@ button {
   border-radius: 8px;
   box-shadow: 0 0 10px #FFD700;
   cursor: pointer;
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 button:hover {
   background-color: #e6c200;
+}
+    
+@media (max-width: 480px) {
+  #form-area {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
     
     body {
@@ -222,36 +229,6 @@ button:hover {
   box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
   transition: all 0.3s ease;
 }
-    
-    .form-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.form-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 20px;
-  border: 2px solid gold;
-  border-radius: 12px;
-  background: rgba(255, 215, 0, 0.05);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-}
-    
-.form-box {
-  border: 2px solid gold;
-  border-radius: 12px;
-  padding: 20px;
-  background: rgba(255, 215, 0, 0.05);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center; /* center isi di dalam kotak */
-}
-    
     input {
   padding: 10px;
   width: 240px;
@@ -379,70 +356,74 @@ button:hover {
   </div>
 
   <!-- Form -->
-<div class="form-wrapper">
-  <div class="form-box">
-    <form id="spinForm">
-      <input type="text" name="kupon" id="kodeInput" placeholder="Masukkan Kode Kupon" required />
-      <input type="text" name="userid" id="userInput" placeholder="Masukkan User ID" required />
-      <button type="submit" id="spinButton">🎁 SPIN SEKARANG</button>
-    </form>
-  </div>
+  <div id="form-area">
+  <input type="text" id="kodeInput" placeholder="Masukkan Kode Kupon" />
+  <input type="text" id="userIdInput" placeholder="Masukkan User ID" />
+  <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
 </div>
-  
-     const urlScript = "https://script.google.com/macros/s/AKfycbz8H198o0KOYTXROzaoVKSIhXBCX3fbTHxo7y3VW7Mp42U0TSSM86EqZXQN6f5J-MPK/exec";
 
-document.getElementById("spinForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+     <script>
+  const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
 
-  const kupon = document.getElementById("kodeInput").value.trim();
-  const userId = document.getElementById("userInput").value.trim();
+  const hadiahKeSudut = {
+  "IDR 2500": -6,
+  "IDR 5000": 30,
+  "IDR 7500": 66,
+  "IDR 10000": 102,
+  "IDR 15000": 138,
+  "IDR 20000": 174,
+  "IDR 50000": 210,
+  "IDR 100000": 246,
+  "IDR 150000": 282,
+  "IDR 1000000": 318
+};
 
-  if (!kupon || !userId) {
-    alert("❗Harap isi semua kolom!");
-    return;
-  }
+  let totalPutaran = 0;
+
+  async function putarRoda() {
+  const input = document.getElementById("kodeInput").value.trim();
+  if (!input) return alert("Masukkan kode kupon!");
 
   const res = await fetch(urlScript, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ kupon, userid: userId })
+    body: new URLSearchParams({ kupon: input })
   });
 
   const data = await res.json();
 
   if (data.status === "invalid") {
-    alert("❌ Kupon atau User ID tidak cocok.");
+    alert("❌ Kode tidak valid!");
     return;
   }
 
   if (data.status === "used") {
-    alert("⚠️ Kupon sudah digunakan.");
+    alert("⚠️ Kupon sudah digunakan!");
     return;
   }
 
-  const hadiah = "IDR " + data.hadiah;
-  const angle = hadiahKeSudut[hadiah];
+const hadiah = "IDR " + data.hadiah;
+const angle = hadiahKeSudut[hadiah];
 
-  if (angle === undefined) {
-    alert("⚠️ Hadiah tidak dikenali: " + hadiah);
-    return;
-  }
+if (angle === undefined) {
+  alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+  return;
+}
 
-  // Hitung rotasi agar pointer atas menunjuk hadiah
-  const segmentOffset = 18;
-  const pointerInitialAngle = 282;
-  const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
-  totalPutaran += 360 * 5 + correctedAngle;
+const segmentOffset = 18; // tengah segmen
+const pointerInitialAngle = 282; // posisi default saat buka halaman
+const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
 
-  const wheel = document.getElementById("wheel");
-  wheel.style.transition = "transform 5s ease-out";
-  wheel.style.transform = `rotate(${totalPutaran}deg)`;
+totalPutaran += 360 * 5 + correctedAngle;
 
-  setTimeout(() => {
-    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-  }, 5200);
-});
-       
+const wheel = document.getElementById("wheel");
+wheel.style.transition = "transform 5s ease-out";
+wheel.style.transform = `rotate(${totalPutaran}deg)`;
+
+setTimeout(() => {
+  alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+}, 5200);
+
+}
 </script>
 </body>
 </html>
