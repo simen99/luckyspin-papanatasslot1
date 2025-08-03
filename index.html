@@ -152,38 +152,29 @@ button:hover {
 }
 
 .led {
-  --total: 30;
-  --angle: calc(360deg / var(--total));
-  --i: 0;
+      --total: 30;
+      --angle: calc(360deg / var(--total));
+      --i: 0;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  transform-origin: center;
-  transform: rotate(calc(var(--i) * var(--angle))) translateY(-155px);
-  animation: ledFlash 1.5s linear infinite;
-  animation-delay: calc(var(--i) * 0.05s);
-  opacity: 0.3;
-}
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: gold;
+      box-shadow: 0 0 6px white;
+      transform-origin: center;
+      transform: rotate(calc(var(--i) * var(--angle))) translateY(-155px);
+      animation: blink 1s infinite alternate;
+      animation-delay: calc(var(--i) * 0.05s);
+    }
 
-.led:nth-child(odd) {
-  background: #FFD700; /* emas lembut */
-  box-shadow: 0 0 6px #FFD700;
-}
-
-.led:nth-child(even) {
-  background: #FDF5E6; /* putih hangat */
-  box-shadow: 0 0 6px #FDF5E6;
-}
-
-@keyframes ledFlash {
-  0%   { opacity: 0.2; transform: scale(1); }
-  50%  { opacity: 1; transform: scale(1.4); }
-  100% { opacity: 0.2; transform: scale(1); }
-}
+    @keyframes blink {
+      0% { background: white; box-shadow: 0 0 6px white; }
+      100% { background: gold; box-shadow: 0 0 8px gold; }
+    }
+    
      #form-area {
   margin-top: 30px;
   display: flex;
