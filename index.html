@@ -167,20 +167,22 @@ button:hover {
   transform: rotate(calc(var(--i) * var(--angle))) translateY(-155px);
   animation: ledBlink 1.2s infinite;
   animation-delay: calc(var(--i) * 0.03s);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-/* Merah dan Biru bergantian berdasarkan indeks */
-.led:nth-child(even) {
-  background: red;
-}
+/* Pola: ganjil = emas, genap = putih hangat */
 .led:nth-child(odd) {
-  background: blue;
+  background: #FFD700; /* emas lembut */
+  box-shadow: 0 0 8px #FFD700;
+}
+
+.led:nth-child(even) {
+  background: #F8F1E5; /* putih hangat */
+  box-shadow: 0 0 8px #F8F1E5;
 }
 
 @keyframes ledBlink {
-  0%, 100% { opacity: 0.4; filter: brightness(0.8); }
-  50% { opacity: 1; filter: brightness(1.6); }
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
      #form-area {
