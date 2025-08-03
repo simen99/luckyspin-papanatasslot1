@@ -219,25 +219,52 @@ button:hover {
 .label-10 { transform: rotate(318deg)  translate(55px); }
 
     input {
-      padding: 10px;
-      width: 200px;
-      font-size: 14px;
-    }
+  padding: 10px;
+  width: 250px;
+  font-size: 14px;
+  border: 2px solid gold;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 12px rgba(255, 255, 0, 0.9);
+  transform: scale(1.03);
+}
 
     button {
-      padding: 10px 20px;
-      font-size: 14px;
-      background: orange;
-      border: none;
-      color: white;
-      margin-top: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+  padding: 10px 20px;
+  font-size: 14px;
+  background: linear-gradient(90deg, #ffcc00, #ff9900);
+  border: 2px solid gold;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 0 10px gold;
+  transition: all 0.3s ease-in-out;
+  animation: pulse-shadow 1.5s infinite alternate;
+}
 
-    button:hover {
-      background: darkorange;
-    }
+button:hover {
+  transform: scale(1.06);
+  background: linear-gradient(90deg, #fff200, #ffaa00);
+  box-shadow: 0 0 15px yellow;
+}
+
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0 0 8px gold;
+  }
+  100% {
+    box-shadow: 0 0 16px yellow;
+  }
+}
   </style>
 </head>
 <body>
