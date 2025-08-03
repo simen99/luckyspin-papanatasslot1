@@ -435,7 +435,7 @@ button:hover {
     return;
   }
 
-  const hadiah = "IDR " + data.hadiah;
+  const hadiah = "IDR " + data.hadiah.replace(/[,\.]/g, "");
   const angle = hadiahKeSudut[hadiah];
 
   if (angle === undefined) {
@@ -454,9 +454,9 @@ button:hover {
   wheel.style.transform = `rotate(${totalPutaran}deg)`;
 
   setTimeout(() => {
-    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-  }, 5200);
-});
+  const hadiahFormatted = "IDR " + formatRupiah(data.hadiah.replace(/[,\.]/g, ""));
+  alert(`🎉 Selamat! Kamu mendapatkan ${hadiahFormatted}`);
+}, 5200);
        
 </script>
 </body>
