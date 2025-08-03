@@ -264,8 +264,9 @@ button:hover {
   margin: 30px auto 0;
   box-shadow: 0 0 10px #FFD700;
   background-color: #000000;
-  width: fit-content; /* ⬅️ penting agar lebar ngikutin isi */
-  max-width: 90%;
+  width: 320px;         /* ✅ Ukuran tetap */
+  max-width: 95vw;      /* ✅ Responsive fallback */
+  flex-direction: column;
 }
 
 #form-area {
