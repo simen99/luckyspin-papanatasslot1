@@ -399,55 +399,80 @@ button:hover {
   async function putarRoda() {
   const kodeInput = document.getElementById("kodeInput").value.trim();
   const userIdInput = document.getElementById("userIdInput").value.trim();
+  const spinBtn = document.getElementById("spinBtn");
+
+  // Cegah klik ganda
+  spinBtn.disabled = true;
+  spinBtn.innerText = "⏳ Sedang memproses...";
 
   if (!userIdInput) {
     alert("⚠️ User ID wajib diisi!");
+    resetButton();
     return;
   }
 
   if (kodeInput.length < 10) {
     alert("⚠️ Kode kupon minimal 10 karakter!");
+    resetButton();
     return;
   }
 
-  const res = await fetch(urlScript, {
-    method: 'POST',
-    body: new URLSearchParams({ kupon: kodeInput })
-  });
+  try {
+    const res = await fetch(urlScript, {
+      method: 'POST',
+      body: new URLSearchParams({ kupon: kodeInput })
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (data.status === "invalid") {
-    alert("❌ Kode tidak valid!");
-    return;
+    if (data.status === "invalid") {
+      alert("❌ Kode tidak valid!");
+      resetButton();
+      return;
+    }
+
+    if (data.status === "used") {
+      alert("⚠️ Kupon sudah digunakan!");
+      resetButton();
+      return;
+    }
+
+    const hadiah = "IDR " + data.hadiah;
+    const angle = hadiahKeSudut[hadiah];
+
+    if (angle === undefined) {
+      alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+      resetButton();
+      return;
+    }
+
+    const segmentOffset = 18;
+    const pointerInitialAngle = 282;
+    const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+
+    totalPutaran += 360 * 5 + correctedAngle;
+
+    const wheel = document.getElementById("wheel");
+    wheel.style.transition = "transform 5s ease-out";
+    wheel.style.transform = `rotate(${totalPutaran}deg)`;
+
+    // Setelah animasi selesai (5 detik)
+    setTimeout(() => {
+      alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+      resetButton();
+    }, 5200);
+
+  } catch (err) {
+    alert("❌ Terjadi kesalahan. Coba lagi.");
+    resetButton();
   }
+}
 
-  if (data.status === "used") {
-    alert("⚠️ Kupon sudah digunakan!");
-    return;
-  }
-
-  const hadiah = "IDR " + data.hadiah;
-  const angle = hadiahKeSudut[hadiah];
-
-  if (angle === undefined) {
-    alert("⚠️ Hadiah tidak dikenali: " + hadiah);
-    return;
-  }
-
-  const segmentOffset = 18;
-  const pointerInitialAngle = 282;
-  const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
-
-  totalPutaran += 360 * 5 + correctedAngle;
-
-  const wheel = document.getElementById("wheel");
-  wheel.style.transition = "transform 5s ease-out";
-  wheel.style.transform = `rotate(${totalPutaran}deg)`;
-
-  setTimeout(() => {
-    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-  }, 5200);
+// Fungsi untuk mengembalikan tombol ke kondisi awal
+function resetButton() {
+  const spinBtn = document.getElementById("spinBtn");
+  spinBtn.disabled = false;
+  spinBtn.innerText = "🎁 SPIN SEKARANG";
 }
        
 </script>
