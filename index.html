@@ -31,13 +31,6 @@ button:hover {
   background-color: #e6c200;
 }
     
-@media (max-width: 480px) {
-  #form-area {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-    
     body {
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -230,20 +223,21 @@ button:hover {
   transition: all 0.3s ease;
 }
     
-    .form-box {
+    .form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form-box {
   display: flex;
   flex-direction: column;
-  align-items: center; /* agar semua anak dirata-tengah */
+  align-items: center;
   gap: 12px;
   padding: 20px;
   border: 2px solid gold;
   border-radius: 12px;
   background: rgba(255, 215, 0, 0.05);
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-}
-  .form-wrapper {
-  display: flex;
-  justify-content: center;
 }
     
 .form-box {
@@ -385,7 +379,7 @@ button:hover {
   </div>
 
   <!-- Form -->
-  <div class="form-wrapper">
+<div class="form-wrapper">
   <div class="form-box">
     <form id="spinForm">
       <input type="text" name="kupon" id="kodeInput" placeholder="Masukkan Kode Kupon" required />
