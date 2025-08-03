@@ -389,14 +389,16 @@ button:hover {
   <!-- Form -->
   <div class="form-wrapper">
   <div class="form-box">
-    <input type="text" id="kodeInput" placeholder="Masukkan Kode Kupon" />
-    <input type="text" id="userIdInput" placeholder="Masukkan User ID" />
-    <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
+    <form id="spinForm">
+      <input type="text" name="kupon" id="kodeInput" placeholder="Masukkan Kode Kupon" required />
+      <input type="text" name="userid" id="userInput" placeholder="Masukkan User ID" required />
+      <button type="submit" id="spinButton">🎁 SPIN SEKARANG</button>
+    </form>
   </div>
 </div>
   
      <script>
-  const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
+  const urlScript = "https://script.google.com/macros/s/AKfycbwlCy-issM_d-Aqxurl6ftTWJpa_Way2VZdaC0tvCpR4P2R0KyvSWAH18Q2rSXUJJaY/exec";
 
   const hadiahKeSudut = {
   "IDR 2500": -6,
@@ -413,13 +415,20 @@ button:hover {
 
   let totalPutaran = 0;
 
-  async function putarRoda() {
-  const input = document.getElementById("kodeInput").value.trim();
-  if (!input) return alert("Masukkan kode kupon!");
+  document.getElementById("spinForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const kupon = document.getElementById("kodeInput").value.trim();
+  const userId = document.getElementById("userInput").value.trim();
+
+  if (!kupon || !userId) {
+    alert("❗Harap isi semua kolom!");
+    return;
+  }
 
   const res = await fetch(urlScript, {
     method: 'POST',
-    body: new URLSearchParams({ kupon: input })
+    body: new URLSearchParams({ kupon, userid: userId })
   });
 
   const data = await res.json();
@@ -434,29 +443,29 @@ button:hover {
     return;
   }
 
-const hadiah = "IDR " + data.hadiah;
-const angle = hadiahKeSudut[hadiah];
+  const hadiah = "IDR " + data.hadiah;
+  const angle = hadiahKeSudut[hadiah];
 
-if (angle === undefined) {
-  alert("⚠️ Hadiah tidak dikenali: " + hadiah);
-  return;
-}
+  if (angle === undefined) {
+    alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+    return;
+  }
 
-const segmentOffset = 18; // tengah segmen
-const pointerInitialAngle = 282; // posisi default saat buka halaman
-const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+  const segmentOffset = 18;
+  const pointerInitialAngle = 282;
+  const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
 
-totalPutaran += 360 * 5 + correctedAngle;
+  totalPutaran += 360 * 5 + correctedAngle;
 
-const wheel = document.getElementById("wheel");
-wheel.style.transition = "transform 5s ease-out";
-wheel.style.transform = `rotate(${totalPutaran}deg)`;
+  const wheel = document.getElementById("wheel");
+  wheel.style.transition = "transform 5s ease-out";
+  wheel.style.transform = `rotate(${totalPutaran}deg)`;
 
-setTimeout(() => {
-  alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-}, 5200);
-
-}
+  setTimeout(() => {
+    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+  }, 5200);
+});
+       
 </script>
 </body>
 </html>
