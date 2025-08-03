@@ -388,6 +388,12 @@ button:hover {
   <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
 </div>
 
+     <!-- Form -->
+  <div id="form-area">
+    <input type="text" id="kodeInput" placeholder="Masukkan Kode Kupon" />
+    <button onclick="putarRoda()">🎁 SPIN SEKARANG</button>
+  </div>
+
      <script>
   const urlScript = "https://script.google.com/macros/s/AKfycbwWV25bZMAT1kxwNgtb_gZeyVzpyk0f9NhMrGaGPSYXYvXZUFum4SiC9bVVbY0zSy2R/exec";
 
@@ -427,28 +433,29 @@ button:hover {
     return;
   }
 
-  const hadiah = "IDR " + data.hadiah;
-  const angle = hadiahKeSudut[hadiah];
+const hadiah = "IDR " + data.hadiah;
+const angle = hadiahKeSudut[hadiah];
 
-  if (angle === undefined) {
-    alert("⚠️ Hadiah tidak dikenali: " + hadiah);
-    return;
-  }
-
-  const segmentOffset = 18;
-  const pointerInitialAngle = 282;
-  const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
-
-  totalPutaran += 360 * 5 + correctedAngle;
-
-  const wheel = document.getElementById("wheel");
-  wheel.style.transition = "transform 5s ease-out";
-  wheel.style.transform = `rotate(${totalPutaran}deg)`;
-
-  setTimeout(() => {
-    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-  }, 5200);
+if (angle === undefined) {
+  alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+  return;
 }
+
+const segmentOffset = 18; // tengah segmen
+const pointerInitialAngle = 282; // posisi default saat buka halaman
+const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+
+totalPutaran += 360 * 5 + correctedAngle;
+
+const wheel = document.getElementById("wheel");
+wheel.style.transition = "transform 5s ease-out";
+wheel.style.transform = `rotate(${totalPutaran}deg)`;
+
+setTimeout(() => {
+  alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+}, 5200);
+}
+       
 </script>
   
 <script type="text/javascript">
