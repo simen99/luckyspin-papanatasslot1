@@ -163,18 +163,24 @@ button:hover {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: gold;
   transform-origin: center;
   transform: rotate(calc(var(--i) * var(--angle))) translateY(-155px);
-  animation: blink 1.2s linear infinite;
-  animation-delay: calc(var(--i) * 0.04s);
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  animation: ledBlink 1.2s infinite;
+  animation-delay: calc(var(--i) * 0.03s);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-@keyframes blink {
-  0%   { opacity: 0.4; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.4; }
+/* Merah dan Biru bergantian berdasarkan indeks */
+.led:nth-child(even) {
+  background: red;
+}
+.led:nth-child(odd) {
+  background: blue;
+}
+
+@keyframes ledBlink {
+  0%, 100% { opacity: 0.4; filter: brightness(0.8); }
+  50% { opacity: 1; filter: brightness(1.6); }
 }
 
      #form-area {
