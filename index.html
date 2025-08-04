@@ -640,6 +640,7 @@ input[type="text"] {
   let totalPutaran = 0;
 
   async function putarRoda() {
+  document.getElementById("popup-hadiah").style.display = "none";
   const input = document.getElementById("kodeInput").value.trim();
 if (!input) {
   showPopup("⚠️ Masukkan kode kupon!");
@@ -700,6 +701,10 @@ const angle = hadiahKeSudut[hadiahAsli];
 }, 5200);
 }
 </script>
+<!-- Tombol spin lagi -->
+<div style="margin-top: 15px;">
+  <button onclick="tutupPopupHadiah()">SPIN LAGI</button>
+</div>
 
   <div id="popup-hadiah" class="popup-hadiah-container" style="display: none;">
   <div class="popup-hadiah-box">
@@ -730,13 +735,7 @@ const angle = hadiahKeSudut[hadiahAsli];
     KLAIM KE TELEGRAM
   </a>
 </div>
-
-<!-- Tombol spin lagi -->
-<div style="margin-top: 15px;">
-  <button onclick="tutupPopupHadiah()">SPIN LAGI</button>
-</div>
   
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script>
   
 function confettiEffect() {
@@ -789,8 +788,8 @@ function tampilkanPopupHadiah(hadiah, kupon) {
 function tutupPopupHadiah() {
   document.getElementById("popup-hadiah").style.display = "none";
 }
+   
 </script>
-  
-  
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
