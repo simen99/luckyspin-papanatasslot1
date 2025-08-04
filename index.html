@@ -498,6 +498,24 @@ input[type="text"] {
   from {transform: scale(0.8); opacity: 0;}
   to {transform: scale(1); opacity: 1;}
 }
+
+.popup-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  padding: 10px 16px;
+  margin: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.popup-button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+}
   
   </style>
 </head>
@@ -692,13 +710,9 @@ const angle = hadiahKeSudut[hadiahAsli];
     </div>
 
     <div class="popup-buttons">
-      <a href="https://klikblg.com/wa-pas" target="_blank">
-        <img src="https://i.ibb.co/LXp1Yy3S/whats-app.gif" alt="Klaim WhatsApp" />
-      </a>
-      <a href="https://klikblg.com/tele-pas" target="_blank">
-        <img src="https://i.ibb.co/tMf82kDb/telegram-gif.gif" alt="Klaim Telegram" />
-      </a>
-    </div>
+  <a href="https://klikblg.com/wa-pas" target="_blank" class="popup-button">KLAIM VIA WHATSAPP</a>
+  <a href="https://klikblg.com/tele-pas" target="_blank" class="popup-button">KLAIM VIA TELEGRAM</a>
+</div>
 
     <button onclick="tutupPopupHadiah()">SPIN AGAIN</button>
   </div>
