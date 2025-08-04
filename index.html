@@ -302,7 +302,7 @@ button:hover {
   cursor: pointer;
   margin-top: 8px;
   font-weight: bold;
-  animation: shimmer 2.5s infinite linear, pulse 3s infinite ease-in-out;
+  animation: shimmer 2.5s infinite linear;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -323,14 +323,7 @@ button:hover {
   100% {
     background-position: 300px 0;
   }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-  
+    
 input[type="text"] {
   text-align: center; /* isi teks juga rata tengah */
 }
