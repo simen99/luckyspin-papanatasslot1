@@ -522,7 +522,10 @@ input[type="text"] {
 
   async function putarRoda() {
   const input = document.getElementById("kodeInput").value.trim();
-  if (!input) return alert("Masukkan kode kupon!");
+if (!input) {
+  showPopup("⚠️ Masukkan kode kupon!");
+  return;
+}
 
   const button = document.querySelector("button");
   button.disabled = true;
