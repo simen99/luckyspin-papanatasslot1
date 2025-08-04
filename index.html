@@ -353,6 +353,47 @@ input[type="text"] {
   justify-content: center;
   margin-top: 20px;
 }
+.popup-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+}
+
+.popup-box {
+  background: #111;
+  border: 2px solid gold;
+  border-radius: 12px;
+  padding: 25px 30px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 20px gold;
+  max-width: 300px;
+  animation: popIn 0.3s;
+}
+
+.popup-box button {
+  margin-top: 15px;
+  background: gold;
+  border: none;
+  padding: 8px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
   
   </style>
 </head>
@@ -473,14 +514,14 @@ input[type="text"] {
   const data = await res.json();
 
   if (data.status === "invalid") {
-    alert("❌ Kode tidak valid!");
+    showPopup("❌ Kode tidak valid!");
     button.disabled = false;
     button.innerText = "🎁 SPIN SEKARANG";
     return;
   }
 
   if (data.status === "used") {
-    alert("⚠️ Kupon sudah digunakan!");
+    showPopup("⚠️ Kupon sudah digunakan!");
     button.disabled = false;
     button.innerText = "🎁 SPIN SEKARANG";
     return;
@@ -490,7 +531,7 @@ input[type="text"] {
   const angle = hadiahKeSudut[hadiah];
 
   if (angle === undefined) {
-    alert("⚠️ Hadiah tidak dikenali: " + hadiah);
+    showPopup("⚠️ Hadiah tidak dikenali: " + hadiah);
     button.disabled = false;
     button.innerText = "🎁 SPIN SEKARANG";
     return;
@@ -507,12 +548,11 @@ input[type="text"] {
   wheel.style.transform = `rotate(${totalPutaran}deg)`;
 
   setTimeout(() => {
-    confettiEffect(); // efek confetti 🎉
-    alert(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
-    button.disabled = false;
-    button.innerText = "🎁 SPIN SEKARANG";
-  }, 5200);
-}
+  confettiEffect(); // efek confetti 🎉
+  showPopup(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
+  button.disabled = false;
+  button.innerText = "🎁 SPIN SEKARANG";
+}, 5200);
        
 </script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -548,6 +588,26 @@ s0.parentNode.insertBefore(s1,s0);
 <a href="https://klikblg.com/wa-pas" target="_blank" class="floating-btn" style="bottom: 110px;">
   <img src="https://i.ibb.co/LXp1Yy3S/whats-app.gif" alt="WhatsApp" />
 </a>
+
+  <div id="popup" class="popup-container" style="display:none;">
+  <div class="popup-box">
+    <span id="popup-message">...</span>
+    <button onclick="tutupPopup()">Tutup</button>
+  </div>
+</div>
+
+ <script>
+    function showPopup(pesan) {
+      const popup = document.getElementById("popup");
+      const msg = document.getElementById("popup-message");
+      msg.innerText = pesan;
+      popup.style.display = "flex";
+    }
+
+    function tutupPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
   
 </body>
 </html>
