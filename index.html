@@ -665,7 +665,7 @@ const angle = hadiahKeSudut[hadiahAsli];
 
    setTimeout(() => {
   confettiEffect();
-  tampilkanPopupHadiah(data.hadiah, input, data.username); // ⬅️ Tambahkan ini
+  tampilkanPopupHadiah(data.hadiah, input); // ✅ benar
   button.disabled = false;
   button.innerText = "🎁 SPIN SEKARANG";
 }, 5200);
@@ -747,10 +747,10 @@ s0.parentNode.insertBefore(s1,s0);
 </div>
 
  <script>
-function tampilkanPopupHadiah(data.hadiah, input); 
+function tampilkanPopupHadiah(hadiah, kupon) {
   const hadiahFormatted = "IDR " + formatRupiah(hadiah);
   document.querySelector(".popup-hadiah").innerText = hadiahFormatted;
-  document.querySelector(".popup-info p:nth-child(1)").innerHTML = `<strong>Kode Kupon:</strong> ${kupon}`;
+  document.querySelector(".popup-info p").innerHTML = `<strong>Kode Kupon :</strong> ${kupon}`;
   document.getElementById("popup-hadiah").style.display = "flex";
 }
 
