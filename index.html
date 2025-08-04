@@ -613,6 +613,13 @@ input[type="text"] {
   </div>
 </div>
 
+ <div id="popup" class="popup-container" style="display:none;">
+  <div class="popup-box">
+    <span id="popup-message">...</span>
+    <button onclick="tutupPopup()">Tutup</button>
+  </div>
+</div>
+
   <script>
   const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
   </script>
@@ -735,6 +742,7 @@ const angle = hadiahKeSudut[hadiahAsli];
 <div style="margin-top: 15px;">
   <button onclick="tutupPopupHadiah()">SPIN LAGI</button>
 </div>
+</div>
   
 <script>
   
@@ -755,13 +763,6 @@ function confettiEffect() {
 <a href="https://klikblg.com/wa-pas" target="_blank" class="floating-btn" style="bottom: 110px;">
   <img src="https://i.ibb.co/LXp1Yy3S/whats-app.gif" alt="WhatsApp" />
 </a>
-
-  <div id="popup" class="popup-container" style="display:none;">
-  <div class="popup-box">
-    <span id="popup-message">...</span>
-    <button onclick="tutupPopup()">Tutup</button>
-  </div>
-</div>
 
 <script>
 function tampilkanPopupHadiah(hadiah, kupon) {
