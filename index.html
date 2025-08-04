@@ -193,7 +193,7 @@ button:hover {
   border-radius: 20px;
   display: inline-block;
   margin-top: 40px;
-  box-shadow: 0 0 10px #FFD700;
+  box-shadow: none; /* ⬅️ Glow dinonaktifkan */
   background-color: #000000;
 }
 
@@ -294,18 +294,44 @@ button:hover {
 }
 
 #form-area button {
-  background: #FFA500;
+  background: linear-gradient(120deg, #FFA500, #FFD700, #FFA500);
+  background-size: 400% 100%;
   color: white;
   border: none;
   box-shadow: 0 0 8px #FFD700;
   cursor: pointer;
   margin-top: 8px;
+  font-weight: bold;
+  animation: shimmer 2.5s infinite linear, pulse 3s infinite ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #form-area button:hover {
-  background-color: #e6a400;
+  background-position: 100% 0;
+  transform: scale(1.07);
+  box-shadow: 0 0 25px #ffcc00;
 }
-    
+
+#form-area button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px #ff9900;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -300px 0;
+  }
+  100% {
+    background-position: 300px 0;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+  
 input[type="text"] {
   text-align: center; /* isi teks juga rata tengah */
 }
