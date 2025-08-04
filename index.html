@@ -27,6 +27,19 @@ button {
   margin-top: 18px;
 }
 
+button {
+  transition: all 0.3s ease;
+}
+
+button:disabled {
+  background: #999 !important;
+  color: #444 !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  animation: none !important;
+  opacity: 0.6;
+}
+
 button:hover {
   background-color: #e6c200;
 }
@@ -662,7 +675,7 @@ input[type="text"] {
 
   // 🔒 Disable tombol saat proses dimulai
   button.disabled = true;
-  button.innerText = "⏳ Memutar...";
+  button.innerHTML = '<span style="font-size:18px;">⏳</span> Memutar...';
 
   // ❌ Jika input kosong
   if (!input) {
