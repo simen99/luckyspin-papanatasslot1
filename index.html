@@ -492,8 +492,15 @@ input[type="text"] {
   </div>
 </div>
 
-     <script>
+  <script>
   const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
+  <script>
+
+  <script>
+  function formatRupiah(angka) {
+    return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+</script>
 
   const hadiahKeSudut = {
   "IDR 2500": -6,
@@ -539,8 +546,9 @@ input[type="text"] {
     return;
   }
 
-  const hadiah = "IDR " + data.hadiah;
-  const angle = hadiahKeSudut[hadiah];
+  const hadiahAsli = "IDR " + data.hadiah;
+const hadiah = "IDR " + formatRupiah(data.hadiah);
+const angle = hadiahKeSudut[hadiahAsli];
 
   if (angle === undefined) {
     showPopup("⚠️ Hadiah tidak dikenali: " + hadiah);
@@ -564,7 +572,7 @@ input[type="text"] {
     showPopup(`🎉 Selamat! Kamu mendapatkan ${hadiah}`);
     button.disabled = false;
     button.innerText = "🎁 SPIN SEKARANG";
-  }, 5200);
+  }, 3200);
 }
 </script>
   
