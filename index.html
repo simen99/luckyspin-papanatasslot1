@@ -40,6 +40,10 @@ button:disabled {
   animation: none !important;
   opacity: 0.6;
 }
+    
+button {
+  transition: background 0.3s, transform 0.2s, opacity 0.2s;
+}
 
 button:hover {
   background-color: #e6c200;
@@ -672,19 +676,19 @@ input[type="text"] {
 
   let totalPutaran = 0;
 
-  async function putarRoda() {
+  <script>
+async function putarRoda() {
   const input = document.getElementById("kodeInput").value.trim();
-  const button = document.querySelector("button");
+  const button = document.querySelector("#form-area button");
 
-  // 🔒 Disable tombol saat proses dimulai
-  button.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:6px;"></i> Memutar...';
+  // 🔍 Status: Mengecek
+  button.innerHTML = '<i class="fas fa-search fa-spin" style="margin-right:6px;"></i> Mengecek...';
   button.disabled = true;
 
-  // ❌ Jika input kosong
   if (!input) {
     showPopup("⚠️ Masukkan kode kupon!");
     button.disabled = false;
-    button.innerText = "🎁 SPIN SEKARANG";
+    button.innerHTML = '🎁 SPIN SEKARANG';
     return;
   }
 
@@ -699,14 +703,14 @@ input[type="text"] {
     if (data.status === "invalid") {
       showPopup("❌ Kode tidak valid!");
       button.disabled = false;
-      button.innerText = "🎁 SPIN SEKARANG";
+      button.innerHTML = '🎁 SPIN SEKARANG';
       return;
     }
 
     if (data.status === "used") {
       showPopup("⚠️ Kupon sudah digunakan!");
       button.disabled = false;
-      button.innerText = "🎁 SPIN SEKARANG";
+      button.innerHTML = '🎁 SPIN SEKARANG';
       return;
     }
 
@@ -717,34 +721,34 @@ input[type="text"] {
     if (angle === undefined) {
       showPopup("⚠️ Hadiah tidak dikenali: " + hadiah);
       button.disabled = false;
-      button.innerText = "🎁 SPIN SEKARANG";
+      button.innerHTML = '🎁 SPIN SEKARANG';
       return;
     }
 
-    const segmentOffset = 18; // tengah segmen
-    const pointerInitialAngle = 282; // posisi default pointer
-    const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+    // ⏳ Status: Memutar
+    button.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:6px;"></i> Memutar...';
 
+    const segmentOffset = 18;
+    const pointerInitialAngle = 282;
+    const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
     totalPutaran += 360 * 5 + correctedAngle;
 
     const wheel = document.getElementById("wheel");
     wheel.style.transition = "transform 5s ease-out";
     wheel.style.transform = `rotate(${totalPutaran}deg)`;
 
-    // 🎉 Setelah spin selesai, tampilkan hadiah & enable tombol kembali
     setTimeout(() => {
       confettiEffect();
       tampilkanPopupHadiah(data.hadiah, input);
       button.disabled = false;
-      button.innerText = "🎁 SPIN SEKARANG";
+      button.innerHTML = '🎁 SPIN SEKARANG';
     }, 5200);
   } catch (error) {
     showPopup("⚠️ Terjadi kesalahan koneksi.");
     button.disabled = false;
-    button.innerText = "🎁 SPIN SEKARANG";
+    button.innerHTML = '🎁 SPIN SEKARANG';
   }
 }
-    
 </script>
   
   <div id="popup-hadiah" class="popup-hadiah-container" style="display: none;">
