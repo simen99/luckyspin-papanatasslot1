@@ -132,6 +132,8 @@ button:hover {
   line-height: 1.2;
 }
 
+
+
 .logo-tengah {
   position: absolute;
   top: 50%;
@@ -674,8 +676,8 @@ input[type="text"] {
   const button = document.querySelector("button");
 
   // 🔒 Disable tombol saat proses dimulai
+  button.innerHTML = '<span class="spin-icon">⏳</span> Memutar...';
   button.disabled = true;
-  button.innerHTML = '<span style="font-size:18px;">⏳</span> Memutar...';
 
   // ❌ Jika input kosong
   if (!input) {
