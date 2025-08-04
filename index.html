@@ -657,66 +657,78 @@ input[type="text"] {
   let totalPutaran = 0;
 
   async function putarRoda() {
-  document.getElementById("popup-hadiah").style.display = "none";
   const input = document.getElementById("kodeInput").value.trim();
-if (!input) {
-  showPopup("⚠️ Masukkan kode kupon!");
-  return;
-}
-
   const button = document.querySelector("button");
+
+  // 🔒 Disable tombol saat proses dimulai
   button.disabled = true;
   button.innerText = "⏳ Memutar...";
 
-  const res = await fetch(urlScript, {
-    method: 'POST',
-    body: new URLSearchParams({ kupon: input })
-  });
-
-  const data = await res.json();
-
-  if (data.status === "invalid") {
-    showPopup("❌ Kode tidak valid!");
+  // ❌ Jika input kosong
+  if (!input) {
+    showPopup("⚠️ Masukkan kode kupon!");
     button.disabled = false;
     button.innerText = "🎁 SPIN SEKARANG";
     return;
   }
 
-  if (data.status === "used") {
-    showPopup("⚠️ Kupon sudah digunakan!");
+  try {
+    const res = await fetch(urlScript, {
+      method: 'POST',
+      body: new URLSearchParams({ kupon: input })
+    });
+
+    const data = await res.json();
+
+    if (data.status === "invalid") {
+      showPopup("❌ Kode tidak valid!");
+      button.disabled = false;
+      button.innerText = "🎁 SPIN SEKARANG";
+      return;
+    }
+
+    if (data.status === "used") {
+      showPopup("⚠️ Kupon sudah digunakan!");
+      button.disabled = false;
+      button.innerText = "🎁 SPIN SEKARANG";
+      return;
+    }
+
+    const hadiahAsli = "IDR " + data.hadiah;
+    const hadiah = "IDR " + formatRupiah(data.hadiah);
+    const angle = hadiahKeSudut[hadiahAsli];
+
+    if (angle === undefined) {
+      showPopup("⚠️ Hadiah tidak dikenali: " + hadiah);
+      button.disabled = false;
+      button.innerText = "🎁 SPIN SEKARANG";
+      return;
+    }
+
+    const segmentOffset = 18; // tengah segmen
+    const pointerInitialAngle = 282; // posisi default pointer
+    const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
+
+    totalPutaran += 360 * 5 + correctedAngle;
+
+    const wheel = document.getElementById("wheel");
+    wheel.style.transition = "transform 5s ease-out";
+    wheel.style.transform = `rotate(${totalPutaran}deg)`;
+
+    // 🎉 Setelah spin selesai, tampilkan hadiah & enable tombol kembali
+    setTimeout(() => {
+      confettiEffect();
+      tampilkanPopupHadiah(data.hadiah, input);
+      button.disabled = false;
+      button.innerText = "🎁 SPIN SEKARANG";
+    }, 5200);
+  } catch (error) {
+    showPopup("⚠️ Terjadi kesalahan koneksi.");
     button.disabled = false;
     button.innerText = "🎁 SPIN SEKARANG";
-    return;
   }
-
-  const hadiahAsli = "IDR " + data.hadiah;
-const hadiah = "IDR " + formatRupiah(data.hadiah);
-const angle = hadiahKeSudut[hadiahAsli];
-
-  if (angle === undefined) {
-    showPopup("⚠️ Hadiah tidak dikenali: " + hadiah);
-    button.disabled = false;
-    button.innerText = "🎁 SPIN SEKARANG";
-    return;
-  }
-
-  const segmentOffset = 18; // tengah segmen
-  const pointerInitialAngle = 282; // posisi default
-  const correctedAngle = (pointerInitialAngle - angle - segmentOffset + 360) % 360;
-
-  totalPutaran += 360 * 5 + correctedAngle;
-
-  const wheel = document.getElementById("wheel");
-  wheel.style.transition = "transform 5s ease-out";
-  wheel.style.transform = `rotate(${totalPutaran}deg)`;
-
-   setTimeout(() => {
-  confettiEffect();
-  tampilkanPopupHadiah(data.hadiah, input); // ✅ benar
-  button.disabled = false;
-  button.innerText = "🎁 SPIN SEKARANG";
-}, 5200);
 }
+    
 </script>
   
   <div id="popup-hadiah" class="popup-hadiah-container" style="display: none;">
