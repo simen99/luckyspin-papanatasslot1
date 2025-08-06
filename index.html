@@ -904,19 +904,19 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 
 <script>
-  let promoSudahMuncul = false;
-
   window.addEventListener('load', function () {
+    const sudahClose = localStorage.getItem("popupPromoDitutup");
+
     setTimeout(function () {
-      if (!promoSudahMuncul) {
+      if (!sudahClose) {
         document.getElementById("popup-promo").style.display = "flex";
-        promoSudahMuncul = true;
       }
-    }, 2000); // 2 detik
+    }, 2000);
   });
 
   document.getElementById("closePromoBtn").addEventListener("click", function () {
     document.getElementById("popup-promo").style.display = "none";
+    localStorage.setItem("popupPromoDitutup", "true"); // ✅ Simpan status tutup
   });
 </script>
 </body>
