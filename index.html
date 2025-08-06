@@ -569,6 +569,7 @@ input[type="text"] {
 
 .popup-close {
   position: absolute;
+  animation: pulse 1.5s infinite;
   top: 10px; /* ubah dari -10px ke 10px */
   right: 10px; /* ubah dari -10px ke 10px */
   background: white;
@@ -726,6 +727,21 @@ input[type="text"] {
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(255, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
   }
 }
     
