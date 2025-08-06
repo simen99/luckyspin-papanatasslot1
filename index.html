@@ -708,62 +708,61 @@ input[type="text"] {
 }
 .promo-popup {
   position: fixed;
-  top: 100px;
-  z-index: 99999;
-  animation: slideIn 0.6s ease forwards;
-}
-
-#popup-banner1 {
-  left: -300px;
-  animation-delay: 0s;
-}
-#popup-banner2 {
-  left: -300px;
-  animation-delay: 0.6s;
-}
-#popup-banner3 {
-  left: -300px;
-  animation-delay: 1.2s;
-}
-
-@keyframes slideIn {
-  to {
-    left: 20px;
-  }
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  animation: fadeInSlide 0.5s ease;
 }
 
 .promo-box {
-  background: black;
+  width: 380px;
+  background-color: black;
   border: 3px solid gold;
-  padding: 8px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px gold;
-  width: 180px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px gold;
+  overflow: hidden;
   position: relative;
-  animation: fadeIn 0.3s ease;
 }
 
 .promo-box img {
   width: 100%;
-  border-radius: 8px;
+  height: auto;
+  display: block;
 }
 
 .close-btn {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  background: white;
-  color: red;
+  top: 6px;
+  right: 10px;
+  font-size: 20px;
   font-weight: bold;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: red;
   cursor: pointer;
+  background: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
   box-shadow: 0 0 8px gold;
+  transition: 0.2s ease;
+  animation: pulseX 1.5s infinite;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 5px red;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 30px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
   </style>
   
@@ -782,24 +781,24 @@ input[type="text"] {
 <div class="main-content">
   <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
   
-  <!-- POPUP BANNER 1 -->
-<div class="promo-popup" id="popup-banner1">
+  <!-- BANNER 1: Atas -->
+<div class="promo-popup" id="popup-banner1" style="top: 12%;">
   <div class="promo-box">
     <span class="close-btn" onclick="closePromo('popup-banner1')">✖</span>
     <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" />
   </div>
 </div>
 
-<!-- POPUP BANNER 2 -->
-<div class="promo-popup" id="popup-banner2">
+<!-- BANNER 2: Tengah -->
+<div class="promo-popup" id="popup-banner2" style="top: 42%;">
   <div class="promo-box">
     <span class="close-btn" onclick="closePromo('popup-banner2')">✖</span>
     <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" />
   </div>
 </div>
 
-<!-- POPUP BANNER 3 -->
-<div class="promo-popup" id="popup-banner3">
+<!-- BANNER 3: Bawah -->
+<div class="promo-popup" id="popup-banner3" style="top: 72%;">
   <div class="promo-box">
     <span class="close-btn" onclick="closePromo('popup-banner3')">✖</span>
     <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" />
