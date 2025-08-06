@@ -768,6 +768,20 @@ input[type="text"] {
   text-shadow: 0 0 6px white;
   transform: scale(1.1);
 }
+
+   @keyframes shakeBox {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.promo-box.shake {
+  animation: shakeBox 1s infinite;
+}
+
     
   </style>
   
@@ -787,7 +801,7 @@ input[type="text"] {
   <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
   
   <!-- Popup Banner 1 -->
-<div id="popup-banner1" class="promo-box fadeInSlide" style="top: 100px;">
+<div id="popup-banner1" class="promo-box fadeInSlide shake" style="top: 100px;">
   <span class="promo-close" onclick="closePromo('popup-banner1')">✖</span>
   <a href="https://papanatasslotgaming2.com" target="_blank">
     <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="Promo Garansi" class="promo-img">
@@ -795,7 +809,7 @@ input[type="text"] {
 </div>
 
 <!-- Popup Banner 2 -->
-<div id="popup-banner2" class="promo-box fadeInSlide" style="top: 150px;">
+<div id="popup-banner2" class="promo-box fadeInSlide shake" style="top: 150px;">
   <span class="promo-close" onclick="closePromo('popup-banner2')">✖</span>
   <a href="https://papanatasslotgaming2.com" target="_blank">
     <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="Promo New Member" class="promo-img">
@@ -803,7 +817,7 @@ input[type="text"] {
 </div>
 
 <!-- Popup Banner 3 -->
-<div id="popup-banner3" class="promo-box fadeInSlide" style="top: 200px;">
+<div id="popup-banner3" class="promo-box fadeInSlide shake" style="top: 200px;">
   <span class="promo-close" onclick="closePromo('popup-banner3')">✖</span>
   <a href="https://papanatasslotgaming2.com" target="_blank">
     <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="Lucky Angpao" class="promo-img">
