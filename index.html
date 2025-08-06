@@ -678,61 +678,63 @@ input[type="text"] {
 
 .promo-popup {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  animation: fadeInSlide 0.5s ease;
+  left: 20px;
+  z-index: 999;
+  animation: slideInLeft 0.8s ease forwards;
 }
 
 .promo-box {
-  width: 380px;
-  background-color: black;
-  border: 3px solid gold;
-  border-radius: 16px;
-  box-shadow: 0 0 25px gold;
-  overflow: hidden;
+  background: gold;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 0 20px gold;
+  width: 180px;
   position: relative;
+  animation: pulseBox 3s infinite;
 }
 
 .promo-box img {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 5px;
 }
 
-.close-btn {
+.promo-close {
   position: absolute;
-  top: 6px;
-  right: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: red;
-  cursor: pointer;
+  top: -10px;
+  right: -10px;
   background: white;
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 4px 8px;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  text-align: center;
-  line-height: 28px;
   box-shadow: 0 0 8px gold;
-  transition: 0.2s ease;
-  animation: pulseX 1.5s infinite;
+  cursor: pointer;
+  animation: pulseClose 2s infinite;
+  z-index: 10;
 }
 
-.close-btn:hover {
-  transform: scale(1.2);
-  text-shadow: 0 0 5px red;
-}
-
-@keyframes fadeInSlide {
+@keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translate(-50%, 30px);
+    transform: translateX(-100px);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translateX(0);
   }
+}
+
+@keyframes pulseClose {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 6px gold; }
+  50% { transform: scale(1.15); box-shadow: 0 0 14px gold; }
+}
+
+@keyframes pulseBox {
+  0%, 100% { box-shadow: 0 0 10px gold; }
+  50% { box-shadow: 0 0 20px gold; }
 }
   </style>
   
@@ -751,28 +753,34 @@ input[type="text"] {
 <div class="main-content">
   <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
   
-  <!-- PROMO GARANSI -->
-<div class="promo-popup" id="popup-banner1" style="top: 80px; left: 20px;">
-  <a href="https://papanatasslotgaming2.com" target="_blank">
-    <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi">
-  </a>
-  <span class="close-btn" onclick="closePromo('popup-banner1')">✖</span>
+  <!-- POPUP PROMO 1 -->
+<div id="popup-banner1" class="promo-popup" style="top: 100px;">
+  <div class="promo-box">
+    <span class="promo-close" onclick="closePromo('popup-banner1')">✖</span>
+    <a href="https://papanatasslotgaming2.com" target="_blank">
+      <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" />
+    </a>
+  </div>
 </div>
 
-<!-- PROMO MEMBER BARU -->
-<div class="promo-popup" id="popup-banner2" style="top: 150px; left: 20px;">
-  <a href="https://papanatasslotgaming2.com" target="_blank">
-    <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member">
-  </a>
-  <span class="close-btn" onclick="closePromo('popup-banner2')">✖</span>
+<!-- POPUP PROMO 2 -->
+<div id="popup-banner2" class="promo-popup" style="top: 180px;">
+  <div class="promo-box">
+    <span class="promo-close" onclick="closePromo('popup-banner2')">✖</span>
+    <a href="https://papanatasslotgaming2.com" target="_blank">
+      <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" />
+    </a>
+  </div>
 </div>
 
-<!-- PROMO LUCKY ANGPAO -->
-<div class="promo-popup" id="popup-banner3" style="top: 220px; left: 20px;">
-  <a href="https://papanatasslotgaming2.com" target="_blank">
-    <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao">
-  </a>
-  <span class="close-btn" onclick="closePromo('popup-banner3')">✖</span>
+<!-- POPUP PROMO 3 -->
+<div id="popup-banner3" class="promo-popup" style="top: 260px;">
+  <div class="promo-box">
+    <span class="promo-close" onclick="closePromo('popup-banner3')">✖</span>
+    <a href="https://papanatasslotgaming2.com" target="_blank">
+      <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" />
+    </a>
+  </div>
 </div>
   
   <div id="pointer"></div>
@@ -1074,8 +1082,19 @@ function closePromo(id) {
   const el = document.getElementById(id);
   if (el) {
     el.style.display = "none";
+    localStorage.setItem(`promoDitutup_${id}`, "true");
   }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  ["popup-banner1", "popup-banner2", "popup-banner3"].forEach(id => {
+    const sudahTutup = localStorage.getItem(`promoDitutup_${id}`);
+    if (sudahTutup) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "none";
+    }
+  });
+});
   
 </script>
 </body>
