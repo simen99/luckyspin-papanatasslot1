@@ -429,6 +429,7 @@ input[type="text"] {
   background: white;
   padding: 25px 20px;
   border-radius: 14px;
+  position: relative; /* ➕ Tambahkan baris ini */
   max-width: 320px;
   text-align: center;
   box-shadow: 0 0 30px gold;
@@ -631,6 +632,24 @@ input[type="text"] {
   border-radius: 50%;
   overflow: hidden;
   background-color: black;
+}
+    
+.popup-hadiah-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.popup-hadiah-close:hover {
+  transform: scale(1.2);
+  color: red;
+  text-shadow: 0 0 5px red;
 }
     
   </style>
@@ -847,6 +866,7 @@ async function putarRoda() {
   
   <div id="popup-hadiah" class="popup-hadiah-container" style="display: none;">
   <div class="popup-hadiah-box">
+     <span class="popup-hadiah-close" onclick="window.location.reload()">✖</span>
     <!-- BAGIAN ATAS dengan background abu-abu -->
     <div style="background: #f0f0f0; padding: 15px; border-radius: 10px 10px 0 0;">
       <img class="popup-logo" src="https://i.ibb.co/QvBX0cvM/papanatasslot-logo-1.png" alt="Logo" />
