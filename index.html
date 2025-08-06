@@ -611,6 +611,34 @@ input[type="text"] {
   from {opacity: 0; transform: scale(0.95);}
   to {opacity: 1; transform: scale(1);}
 }
+
+.logo-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.gold-ring {
+  width: 110px;
+  height: 110px;
+  border: 4px solid gold;
+  border-radius: 50%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px gold;
+}
+
+.gold-ring img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: contain;
+}
     
   </style>
   <link rel="icon" type="image/png" href="https://i.ibb.co/8nVfhFgj/97a4200c-d3ff-4403-bf48-66884fede037.png">
@@ -664,9 +692,11 @@ input[type="text"] {
         <div class="led" style="--i:29;"></div>
       </div>
 
-      <img src="https://i.ibb.co/pB63gspd/049b1ca3-db9f-42b9-980d-7363faac5600.png" 
-       alt="Logo Tengah"
-       class="logo-tengah">
+      <div class="logo-wrapper">
+  <div class="gold-ring">
+    <img src="https://i.ibb.co/pB63gspd/049b1ca3-db9f-42b9-980d-7363faac5600.png" alt="Logo Tengah" />
+  </div>
+</div>
 
        <div class="wheel-text">
         </div>
