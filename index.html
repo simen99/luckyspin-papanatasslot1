@@ -703,6 +703,7 @@ input[type="text"] {
 
 .promo-close {
   position: absolute;
+  animation: pulseXSmall 1.6s infinite;
   top: -8px;
   right: -8px;
   background: white;
@@ -742,6 +743,21 @@ input[type="text"] {
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+@keyframes pulseXSmall {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 4px gold;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px gold;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 4px gold;
   }
 }
     
