@@ -706,21 +706,67 @@ input[type="text"] {
   height: auto;
   display: block;
 }
-    
-@media (max-width: 768px) {
-  .mini-banner-wrapper {
-    position: relative;
-    left: auto;
-    top: auto;
-    margin-bottom: 10px;
-  }
+.promo-popup {
+  position: fixed;
+  top: 100px;
+  z-index: 99999;
+  animation: slideIn 0.6s ease forwards;
+}
 
-  .mini-banner {
-    width: 90%;
-    max-width: 300px;
+#popup-banner1 {
+  left: -300px;
+  animation-delay: 0s;
+}
+#popup-banner2 {
+  left: -300px;
+  animation-delay: 0.6s;
+}
+#popup-banner3 {
+  left: -300px;
+  animation-delay: 1.2s;
+}
+
+@keyframes slideIn {
+  to {
+    left: 20px;
   }
 }
+
+.promo-box {
+  background: black;
+  border: 3px solid gold;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px gold;
+  width: 180px;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.promo-box img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: white;
+  color: red;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 8px gold;
+}
   </style>
+  
   <link rel="icon" type="image/png" href="https://i.ibb.co/8nVfhFgj/97a4200c-d3ff-4403-bf48-66884fede037.png">
 </head>
 <body>
@@ -736,20 +782,30 @@ input[type="text"] {
 <div class="main-content">
   <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
   
-  <div class="promo-box-container">
-  <a href="https://papanatasslotgaming2.com" target="_blank">
-    <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" class="promo-img">
-  </a>
-    
-  <a href="https://papanatasslotgaming2.com" target="_blank">
-    <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" class="promo-img">
-  </a>
-    
-  <a href="https://papanatasslotgaming2.com" target="_blank">
-    <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" class="promo-img">
-  </a>
+  <!-- POPUP BANNER 1 -->
+<div class="promo-popup" id="popup-banner1">
+  <div class="promo-box">
+    <span class="close-btn" onclick="closePromo('popup-banner1')">✖</span>
+    <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" />
+  </div>
 </div>
 
+<!-- POPUP BANNER 2 -->
+<div class="promo-popup" id="popup-banner2">
+  <div class="promo-box">
+    <span class="close-btn" onclick="closePromo('popup-banner2')">✖</span>
+    <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" />
+  </div>
+</div>
+
+<!-- POPUP BANNER 3 -->
+<div class="promo-popup" id="popup-banner3">
+  <div class="promo-box">
+    <span class="close-btn" onclick="closePromo('popup-banner3')">✖</span>
+    <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" />
+  </div>
+</div>
+  
   <div id="pointer"></div>
   <div class="pointer-indicator"></div>
   <div class="pointer-line"></div>
@@ -1044,6 +1100,14 @@ s0.parentNode.insertBefore(s1,s0);
     document.getElementById("popup-promo").style.display = "none";
     localStorage.setItem("popupPromoDitutup", "true"); // ✅ Simpan status tutup
   });
+
+function closePromo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.style.display = "none";
+  }
+}
+  
 </script>
 </body>
 </html>
