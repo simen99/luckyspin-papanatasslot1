@@ -676,22 +676,35 @@ input[type="text"] {
   text-shadow: 0 0 5px red;
 }
 
- .mini-banner-wrapper {
+ .promo-box-container {
   position: absolute;
   left: 20px;
-  z-index: 99;
+  top: 120px;
+  z-index: 100;
+  background: linear-gradient(to bottom, gold, #ffcc00);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 0 15px gold;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.mini-banner {
-  width: 180px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 12px gold;
+.promo-box-container a {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
   transition: transform 0.3s ease;
 }
 
-.mini-banner:hover {
-  transform: scale(1.05);
+.promo-box-container a:hover {
+  transform: scale(1.03);
+}
+
+.promo-img {
+  width: 180px;
+  height: auto;
+  display: block;
 }
     
 @media (max-width: 768px) {
@@ -723,24 +736,17 @@ input[type="text"] {
 <div class="main-content">
   <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
   
-  <!-- Promo Garansi Kekalahan -->
-<div class="mini-banner-wrapper" style="top: 150px;">
-  <a href="https://ibb.co/8nF2FqP0" target="_blank">
-    <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" class="mini-banner">
+  <div class="promo-box-container">
+  <a href="https://papanatasslotgaming2.com" target="_blank">
+    <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" class="promo-img">
   </a>
-</div>
-
-<!-- Promo New Member -->
-<div class="mini-banner-wrapper" style="top: 250px;">
-  <a href="https://ibb.co/XZDzvg2L" target="_blank">
-    <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" class="mini-banner">
+    
+  <a href="https://papanatasslotgaming2.com" target="_blank">
+    <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" class="promo-img">
   </a>
-</div>
-
-<!-- Lucky Angpao -->
-<div class="mini-banner-wrapper" style="top: 350px;">
-  <a href="https://ibb.co/fYjDgtJv" target="_blank">
-    <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" class="mini-banner">
+    
+  <a href="https://papanatasslotgaming2.com" target="_blank">
+    <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" class="promo-img">
   </a>
 </div>
 
