@@ -569,16 +569,17 @@ input[type="text"] {
 
 .popup-close {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: 10px; /* ubah dari -10px ke 10px */
+  right: 10px; /* ubah dari -10px ke 10px */
   background: white;
   color: red;
   font-weight: bold;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 28px; /* Tambahkan ukuran agar tidak terlalu kecil */
+  height: 28px;
+  font-size: 18px;
   text-align: center;
-  line-height: 24px;
+  line-height: 28px;
   box-shadow: 0 0 6px gold;
   cursor: pointer;
   z-index: 10000;
@@ -1049,7 +1050,7 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 
 <script>
-  window.addEventListener('load', function () {
+window.addEventListener('load', function () {
   setTimeout(function () {
     document.getElementById("popup-promo").style.display = "flex";
   }, 2000);
@@ -1058,11 +1059,6 @@ s0.parentNode.insertBefore(s1,s0);
 document.getElementById("closePromoBtn").addEventListener("click", function () {
   document.getElementById("popup-promo").style.display = "none";
 });
-
-  document.getElementById("closePromoBtn").addEventListener("click", function () {
-    document.getElementById("popup-promo").style.display = "none";
-    localStorage.setItem("popupPromoDitutup", "true"); // ✅ Simpan status tutup
-  });
 
 function closePromo(id) {
   const el = document.getElementById(id);
