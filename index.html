@@ -1052,12 +1052,15 @@ s0.parentNode.insertBefore(s1,s0);
 <script>
 window.addEventListener('load', function () {
   setTimeout(function () {
-    document.getElementById("popup-promo").style.display = "flex";
+    if (!popupPromoSudahDitutup) {
+      document.getElementById("popup-promo").style.display = "flex";
+    }
   }, 2000);
 });
 
 document.getElementById("closePromoBtn").addEventListener("click", function () {
   document.getElementById("popup-promo").style.display = "none";
+  popupPromoSudahDitutup = true; // ✅ set flag agar tidak muncul lagi
 });
 
 function closePromo(id) {
