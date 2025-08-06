@@ -432,7 +432,7 @@ input[type="text"] {
   position: relative; /* ➕ Tambahkan baris ini */
   max-width: 320px;
   text-align: center;
-  box-shadow: 0 0 30px gold;
+  box-shadow: 0 0 10px gold;
   animation: popIn 0.3s ease;
 }
 
@@ -638,8 +638,8 @@ input[type="text"] {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   background-color: white;
   border-radius: 50%;
   color: red;
@@ -676,56 +676,53 @@ input[type="text"] {
   text-shadow: 0 0 5px red;
 }
 
-.promo-popup {
+.promo-box {
   position: fixed;
   left: 20px;
-  z-index: 999;
-  animation: slideInLeft 0.8s ease forwards;
-}
-
-.promo-box {
+  z-index: 9999;
+  background: #000;
+  border: 2px solid gold;
   border-radius: 10px;
+  box-shadow: 0 0 10px gold;
   padding: 5px;
-  box-shadow: 0 0 20px gold;
+  animation: fadeInSlide 0.8s ease forwards;
 }
 
-.promo-box img {
-  width: 100%;
-  height: auto;
+.promo-img {
+  width: 220px; /* atau lebih kecil kalau mau */
+  border-radius: 6px;
   display: block;
-  border-radius: 5px;
 }
 
 .promo-close {
-  top: -6px;
-  right: -6px;
-  font-size: 14px;
-  padding: 2px 6px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: white;
+  color: red;
+  font-weight: bold;
   border-radius: 50%;
+  border: 2px solid gold;
   width: 24px;
   height: 24px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 6px gold;
 }
-    
-@keyframes slideInLeft {
+
+@keyframes fadeInSlide {
   from {
-    opacity: 0;
     transform: translateX(-100px);
+    opacity: 0;
   }
   to {
-    opacity: 1;
     transform: translateX(0);
+    opacity: 1;
   }
 }
-
-@keyframes pulseClose {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 6px gold; }
-  50% { transform: scale(1.15); box-shadow: 0 0 14px gold; }
-}
-
-@keyframes pulseBox {
-  0%, 100% { box-shadow: 0 0 10px gold; }
-  50% { box-shadow: 0 0 20px gold; }
-}
+    
   </style>
   
   <link rel="icon" type="image/png" href="https://i.ibb.co/8nVfhFgj/97a4200c-d3ff-4403-bf48-66884fede037.png">
@@ -743,34 +740,28 @@ input[type="text"] {
 <div class="main-content">
   <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
   
-  <!-- POPUP PROMO 1 -->
-<div id="popup-banner1" class="promo-popup" style="top: 100px;">
-  <div class="promo-box">
-    <span class="promo-close" onclick="closePromo('popup-banner1')">✖</span>
-    <a href="https://papanatasslotgaming2.com" target="_blank">
-      <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" />
-    </a>
-  </div>
+  <!-- Popup Banner 1 -->
+<div id="popup-banner1" class="promo-box fadeInSlide" style="top: 100px;">
+  <span class="promo-close" onclick="closePromo('popup-banner1')">✖</span>
+  <a href="https://papanatasslotgaming2.com" target="_blank">
+    <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="Promo Garansi" class="promo-img">
+  </a>
 </div>
 
-<!-- POPUP PROMO 2 -->
-<div id="popup-banner2" class="promo-popup" style="top: 145px;">
-  <div class="promo-box">
-    <span class="promo-close" onclick="closePromo('popup-banner2')">✖</span>
-    <a href="https://papanatasslotgaming2.com" target="_blank">
-      <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" />
-    </a>
-  </div>
+<!-- Popup Banner 2 -->
+<div id="popup-banner2" class="promo-box fadeInSlide" style="top: 145px;">
+  <span class="promo-close" onclick="closePromo('popup-banner2')">✖</span>
+  <a href="https://papanatasslotgaming2.com" target="_blank">
+    <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="Promo New Member" class="promo-img">
+  </a>
 </div>
 
-<!-- POPUP PROMO 3 -->
-<div id="popup-banner3" class="promo-popup" style="top: 190px;">
-  <div class="promo-box">
-    <span class="promo-close" onclick="closePromo('popup-banner3')">✖</span>
-    <a href="https://papanatasslotgaming2.com" target="_blank">
-      <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" />
-    </a>
-  </div>
+<!-- Popup Banner 3 -->
+<div id="popup-banner3" class="promo-box fadeInSlide" style="top: 190px;">
+  <span class="promo-close" onclick="closePromo('popup-banner3')">✖</span>
+  <a href="https://papanatasslotgaming2.com" target="_blank">
+    <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="Lucky Angpao" class="promo-img">
+  </a>
 </div>
   
   <div id="pointer"></div>
@@ -1054,14 +1045,14 @@ s0.parentNode.insertBefore(s1,s0);
 
 <script>
   window.addEventListener('load', function () {
-    const sudahClose = localStorage.getItem("popupPromoDitutup");
+  setTimeout(function () {
+    document.getElementById("popup-promo").style.display = "flex";
+  }, 2000);
+});
 
-    setTimeout(function () {
-      if (!sudahClose) {
-        document.getElementById("popup-promo").style.display = "flex";
-      }
-    }, 2000);
-  });
+document.getElementById("closePromoBtn").addEventListener("click", function () {
+  document.getElementById("popup-promo").style.display = "none";
+});
 
   document.getElementById("closePromoBtn").addEventListener("click", function () {
     document.getElementById("popup-promo").style.display = "none";
