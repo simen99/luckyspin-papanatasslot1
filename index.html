@@ -657,7 +657,7 @@ input[type="text"] {
   cursor: pointer;
   z-index: 999;
   animation: pulseXGold 1.5s infinite;
-  transition: transform 0.3s ease;
+  transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
   box-shadow: 0 0 12px 3px gold;
 }
 
@@ -677,9 +677,10 @@ input[type="text"] {
 }
 
 .popup-hadiah-close:hover {
-  transform: scale(1.2);
-  color: red;
-  text-shadow: 0 0 5px red;
+  background-color: gold !important;
+  color: white !important;
+  text-shadow: 0 0 6px white;
+  transform: scale(1.1);
 }
 
 .promo-box {
