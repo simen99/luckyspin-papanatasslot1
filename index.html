@@ -586,11 +586,25 @@ input[type="text"] {
   position: absolute;
   top: 8px;
   right: 12px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: white;
   cursor: pointer;
   z-index: 10;
+  animation: pulseX 1.5s infinite;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.popup-close:hover {
+  transform: scale(1.2);
+  color: gold;
+  text-shadow: 0 0 10px gold;
+}
+
+@keyframes pulseX {
+  0%   { transform: scale(1);   }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1);   }
 }
 
 @keyframes fadeIn {
