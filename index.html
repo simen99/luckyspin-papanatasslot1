@@ -904,25 +904,20 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 
 <script>
-  
-  // Tampilkan popup saat halaman dimuat
-  window.addEventListener('load', function () {
-  setTimeout(function () {
-    document.getElementById("popup-promo").style.display = "flex";
-  }, 2000); // 2000ms = 2 detik
-});
+  let promoSudahMuncul = false;
 
-  function tutupPopupPromo() {
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      if (!promoSudahMuncul) {
+        document.getElementById("popup-promo").style.display = "flex";
+        promoSudahMuncul = true;
+      }
+    }, 2000); // 2 detik
+  });
+
+  document.getElementById("closePromoBtn").addEventListener("click", function () {
     document.getElementById("popup-promo").style.display = "none";
-  }
-  
-</script>
-    
-<script>
-document.getElementById("closePromoBtn").addEventListener("click", function () {
-  document.getElementById("popup-promo").style.display = "none";
-});
-  
+  });
 </script>
 </body>
 </html>
