@@ -569,7 +569,10 @@ input[type="text"] {
   overflow: hidden;
   animation: fadeIn 0.5s ease;
   border: 4px solid gold;
-  box-shadow: 0 0 20px gold, 0 0 10px #FFD700 inset;
+  box-shadow: 
+    0 0 25px gold, 
+    0 0 30px #FFD700 inset,
+    0 0 10px #FFBF00;
 }
 
 .popup-promo-box img {
@@ -699,7 +702,7 @@ input[type="text"] {
 <!-- POPUP PROMO -->
 <div id="popup-promo" class="popup-promo-container">
   <div class="popup-promo-box">
-    <span class="popup-close" onclick="tutupPopupPromo()">✖</span>
+    <span class="popup-close" id="closePromoBtn">✖</span>
     <img src="https://i.ibb.co/hJ9N5vdf/pas-popup.jpg" alt="Popup Promo" />
   </div>
 </div>
@@ -890,12 +893,21 @@ s0.parentNode.insertBefore(s1,s0);
   
   // Tampilkan popup saat halaman dimuat
   window.addEventListener('load', function () {
+  setTimeout(function () {
     document.getElementById("popup-promo").style.display = "flex";
-  });
+  }, 2000); // 2000ms = 2 detik
+});
 
   function tutupPopupPromo() {
     document.getElementById("popup-promo").style.display = "none";
   }
+  
+</script>
+    
+<script>
+document.getElementById("closePromoBtn").addEventListener("click", function () {
+  document.getElementById("popup-promo").style.display = "none";
+});
   
 </script>
 </body>
