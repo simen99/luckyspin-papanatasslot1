@@ -675,7 +675,38 @@ input[type="text"] {
   color: red;
   text-shadow: 0 0 5px red;
 }
+
+ .mini-banner-wrapper {
+  position: absolute;
+  left: 20px;
+  z-index: 99;
+}
+
+.mini-banner {
+  width: 180px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 12px gold;
+  transition: transform 0.3s ease;
+}
+
+.mini-banner:hover {
+  transform: scale(1.05);
+}
     
+@media (max-width: 768px) {
+  .mini-banner-wrapper {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-bottom: 10px;
+  }
+
+  .mini-banner {
+    width: 90%;
+    max-width: 300px;
+  }
+}
   </style>
   <link rel="icon" type="image/png" href="https://i.ibb.co/8nVfhFgj/97a4200c-d3ff-4403-bf48-66884fede037.png">
 </head>
@@ -691,6 +722,28 @@ input[type="text"] {
   
 <div class="main-content">
   <h2>🎯 Luckyspin Anti Zonk PapanAtasSlot 🎯</h2>
+  
+  <!-- Promo Garansi Kekalahan -->
+<div class="mini-banner-wrapper" style="top: 150px;">
+  <a href="https://ibb.co/8nF2FqP0" target="_blank">
+    <img src="https://i.ibb.co/Y4v8vmf3/garansi.jpg" alt="garansi" class="mini-banner">
+  </a>
+</div>
+
+<!-- Promo New Member -->
+<div class="mini-banner-wrapper" style="top: 250px;">
+  <a href="https://ibb.co/XZDzvg2L" target="_blank">
+    <img src="https://i.ibb.co/99hqCL8g/new-member.jpg" alt="new-member" class="mini-banner">
+  </a>
+</div>
+
+<!-- Lucky Angpao -->
+<div class="mini-banner-wrapper" style="top: 350px;">
+  <a href="https://ibb.co/fYjDgtJv" target="_blank">
+    <img src="https://i.ibb.co/wN5ckCts/lucky-angpao.jpg" alt="lucky-angpao" class="mini-banner">
+  </a>
+</div>
+
   <div id="pointer"></div>
   <div class="pointer-indicator"></div>
   <div class="pointer-line"></div>
@@ -787,7 +840,6 @@ input[type="text"] {
     <img src="https://i.ibb.co/hJ9N5vdf/pas-popup.jpg" alt="Popup Promo" />
   </div>
 </div>
-
   <script>
   const urlScript = "https://script.google.com/macros/s/AKfycbyboXB9OvIb5BHqFO5pBel3MZwf8EeTypl9gYq74HKcSqGl7mHSSo8y3tx8ycsAMgEw/exec";
   </script>
