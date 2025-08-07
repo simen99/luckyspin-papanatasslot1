@@ -607,21 +607,21 @@ input[type="text"] {
 
 .logo-wrapper {
   position: absolute;
-  top: 53%;
+  top: 50%;
   left: 50%;
-  transform: translate(-40%, -50%); /* 🔁 supaya pas center */
+  transform: translate(-50%, -50%);
+  width: 140px;    /* ✅ sedikit lebih besar */
+  height: 140px;
   z-index: 10;
-  width: 130px; /* ✅ lebih besar */
-  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
 }
-
+    
 .gold-ring {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   border: 4px solid gold;
   border-radius: 50%;
   background-color: black;
@@ -629,7 +629,7 @@ input[type="text"] {
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 10px gold;
-  overflow: hidden; /* Penting untuk masking bulat */
+  overflow: hidden;
 }
 
 .gold-ring img {
