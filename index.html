@@ -783,6 +783,51 @@ input[type="text"] {
 .promo-box.shake {
   animation: shakeBox 1s infinite;
 }
+
+.popup-win {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #111;
+  color: gold;
+  border: 1px solid gold;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px gold;
+  font-size: 14px;
+  z-index: 99999;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  font-weight: bold;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+.fadeOutRight {
+  animation-name: fadeOutRight;
+}
   </style>
   
   <link rel="icon" type="image/png" href="https://i.ibb.co/8nVfhFgj/97a4200c-d3ff-4403-bf48-66884fede037.png">
@@ -1129,7 +1174,48 @@ function closePromo(id) {
     el.style.display = "none";
   }
 }
-  
+
+<!-- ✅ Popup Container -->
+<div id="popup-win" class="popup-win" style="display: none;"></div>
+
+<script>
+const hadiahList = [
+  "250,000", "500,000", "1,000,000", "2,000,000", "750,000", "1,500,000", "5,000"
+];
+
+function generateRandomUser() {
+  const prefix = ["jam", "xan", "win", "pro", "max"];
+  const angka = Math.floor(Math.random() * 90 + 10); // 2 digit
+  const bintang = "***";
+  return prefix[Math.floor(Math.random() * prefix.length)] + angka + bintang;
+}
+
+function generateHadiah() {
+  return hadiahList[Math.floor(Math.random() * hadiahList.length)];
+}
+
+function showWinPopup() {
+  const popup = document.getElementById("popup-win");
+  const user = generateRandomUser();
+  const hadiah = generateHadiah();
+
+  popup.innerHTML = `📢 <strong>USER ID</strong>: ${user} &nbsp; 🎁 <strong>hadiah</strong> ${hadiah}`;
+  popup.style.display = "block";
+  popup.classList.add("fadeInRight");
+
+  setTimeout(() => {
+    popup.classList.remove("fadeInRight");
+    popup.classList.add("fadeOutRight");
+
+    setTimeout(() => {
+      popup.style.display = "none";
+      popup.classList.remove("fadeOutRight");
+    }, 800);
+  }, 4000);
+}
+
+// 🔁 Munculkan setiap 5 detik
+setInterval(showWinPopup, 5000);
 </script>
 </body>
 </html>
